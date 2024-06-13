@@ -1,10 +1,10 @@
 import "./styles.css";
 import Weather from "./Weather.js";
 
-async function getLocationInfo(searchTerm = "Pärnu") {
+async function getLocationInfo(location = "Pärnu") {
 
   try {
-    const response = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=8b91481cdf6a423f8c7113257242805&q=${searchTerm}&days=3`, { mode: "cors" });
+    const response = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=8b91481cdf6a423f8c7113257242805&q=${location}&days=3`, { mode: "cors" });
     
     if (!response.ok) {
       throw new Error("Network response was not ok");
@@ -42,5 +42,10 @@ async function getLocationInfo(searchTerm = "Pärnu") {
     console.error("Error fetching data:", error);
   }
 }
+
+document.querySelector("#searchbutton").addEventListener("click", () => {
+  const location = document.querySelector("#location").value;
+  getLocationInfo(location);
+});
 
 getLocationInfo();
