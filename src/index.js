@@ -1,5 +1,6 @@
 import "./styles.css";
 import Weather from "./Weather.js";
+const { format } = require("date-fns");
 
 async function getLocationInfo(location = "Pärnu") {
 
@@ -23,12 +24,14 @@ async function getLocationInfo(location = "Pärnu") {
     const forecastWeather = [
       {
         day: 1,
+        date: data.forecast.forecastday[1].date,
         low: data.forecast.forecastday[1].day.mintemp_c,
         high: data.forecast.forecastday[1].day.maxtemp_c,
         condition: data.forecast.forecastday[1].day.condition.text
       },
       {
         day: 2,
+        date: data.forecast.forecastday[2].date,
         low: data.forecast.forecastday[2].day.mintemp_c,
         high: data.forecast.forecastday[2].day.maxtemp_c,
         condition: data.forecast.forecastday[2].day.condition.text
@@ -46,17 +49,23 @@ async function getLocationInfo(location = "Pärnu") {
 }
 
 function fillWeatherInfo(weather) {
-  const currentLocation = document.querySelector(".current-location");
-  const currentTemperature = document.querySelector(".current-temperature");
-  const currentCondition = document.querySelector(".current-condition");
-  const currentWind = document.querySelector(".current-wind");
-  const currentFeelsLike = document.querySelector(".current-feelslike");
+  document.querySelector(".current-location").textContent = weather.current.location;
+  document.querySelector(".current-temperature").textContent = weather.current.temperature + "°C";
+  document.querySelector(".current-condition").textContent = weather.current.condition;
+  document.querySelector(".current-wind").textContent = weather.current.wind + " m/s";
+  document.querySelector(".current-feelslike").textContent = "Feels like " + weather.current.feelsLike + "°C";
 
-  currentLocation.textContent = weather.current.location;
-  currentTemperature.textContent = weather.current.temperature + "°C";
-  currentCondition.textContent = weather.current.condition;
-  currentWind.textContent = weather.current.wind + " m/s";
-  currentFeelsLike.textContent = "Feels like " + weather.current.feelsLike + "°C";
+  const dateOneValue = weather.forecast[0].date;
+  const dateOneFormatted = format(dateOneValue, "eeee");
+  const dateTwoValue = weather.forecast[1].date;
+  const dateTwoFormatted = format(dateTwoValue, "eeee");
+  document.querySelector(".day-one").textContent = dateOneFormatted;
+  document.querySelector(".day-two").textContent = dateTwoFormatted;
+
+  document.querySelector(".day-one-temperature").textContent = "Between " + (weather.forecast[0].low).toFixed(0) + " and " + (weather.forecast[0].high).toFixed(0) + "°C";
+  document.querySelector(".day-one-condition").textContent = weather.forecast[0].condition;
+  document.querySelector(".day-two-temperature").textContent = "Between " + (weather.forecast[1].low).toFixed(0) + " and " + (weather.forecast[1].high).toFixed(0) + "°C";
+  document.querySelector(".day-two-condition").textContent = weather.forecast[1].condition;
 }
 
 document.querySelector("#searchbutton").addEventListener("click", () => {

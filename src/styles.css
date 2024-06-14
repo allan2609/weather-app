@@ -52,8 +52,9 @@ body {
 
 .grid-container {
   display: grid;
-  grid-template-rows: 4rem 4rem 10rem 10rem;
+  grid-template-rows: auto auto auto auto;
   width: min(32rem, 100%);
+  gap: 2.5rem;
   min-height: 100%;
   align-items: center;
 }
@@ -92,6 +93,26 @@ body {
 .today span svg {
   height: 1.1rem;
   margin: 0 0.5rem;
+}
+
+.forecast {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.tomorrow {
+  display: grid;
+  grid-template-rows: 3.5rem 2rem 2rem;
+}
+
+.tomorrow p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.day-one, .day-two {
+  font-size: 1.5rem;
 }
 
 #location {
