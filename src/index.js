@@ -66,6 +66,7 @@ function fillWeatherInfo(weather) {
 
   document.querySelector(".wind-info").style.display = "flex";
   document.querySelector(".wind-icon").style.display = "block";
+  document.querySelector(".grid-container").style.backgroundColor = "";
 
   const dateOneValue = weather.forecast[0].date;
   const dateOneFormatted = format(dateOneValue, "eeee");
