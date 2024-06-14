@@ -116,7 +116,7 @@ body {
 }
 
 #location {
-  width: 90%;
+  width: 75%;
   padding: 0.5rem 1.1rem;
   border-radius: 2rem;
   border: 0;
@@ -127,4 +127,8 @@ body {
   display: flex;
   align-items: center;
   margin: 0 0.5rem;
+}
+
+#togglebutton {
+  padding: 0 0.5rem;
 }
