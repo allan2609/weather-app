@@ -97,4 +97,11 @@ document.querySelector("#searchbutton").addEventListener("click", () => {
 
 document.querySelector("#togglebutton").addEventListener("click", toggleTemperatureUnit);
 
+document.querySelector("#location").addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    const location = document.querySelector("#location").value;
+    getLocationInfo(location);
+  }
+});
+
 getLocationInfo();
