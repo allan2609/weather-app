@@ -7,7 +7,6 @@ let weatherData;
 async function getLocationInfo(location) {
   try {
     document.querySelector("#loading").style.display = "block";
-    //document.querySelector(".wind-icon").style.display = "block";
 
     if (!location) {
       const position = await getCurrentPosition();
@@ -126,7 +125,5 @@ function getCurrentPosition() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  document.querySelector(".wind-info").style.display = "none";
-  document.querySelector(".wind-icon").style.display = "none";
   getLocationInfo();
 });
