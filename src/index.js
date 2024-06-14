@@ -1,5 +1,4 @@
 import "./styles.css";
-import Weather from "./Weather.js";
 const { format } = require("date-fns");
 
 let isCelsius = true;
