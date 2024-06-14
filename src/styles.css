@@ -54,7 +54,7 @@ body {
   display: grid;
   grid-template-rows: auto auto auto auto;
   width: min(32rem, 100%);
-  gap: 2.5rem;
+  gap: 1.5rem;
   min-height: 100%;
   align-items: center;
 }
@@ -130,7 +130,7 @@ body {
 }
 
 #togglebutton {
-  padding: 0 0.5rem;
+  width: 2.3rem;
 }
 
 #loading {
