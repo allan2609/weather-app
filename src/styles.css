@@ -160,12 +160,15 @@ body {
 }
 
 #togglebutton {
-  font-size: 1.3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 0.5rem;
   background-color: rgb(240, 240, 240);
-  width: 2.5rem;
-  height: 2.5rem;
   aspect-ratio: 1/1;
   border-radius: 0.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
   color: black;
 }
 
