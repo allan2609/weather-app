@@ -13,9 +13,10 @@ async function getLocationInfo(location = "Pärnu") {
     const data = await response.json();
 
     const currentWeather = {
+      location: data.location.name,
       temperature: data.current.temp_c,
       condition: data.current.condition.text,
-      wind: data.current.wind_kph / 3.6,
+      wind: (data.current.wind_kph / 3.6).toFixed(1),
       feelsLike: data.current.feelslike_c
     };
 
@@ -37,10 +38,25 @@ async function getLocationInfo(location = "Pärnu") {
     const weather = new Weather(currentWeather, forecastWeather);
     
     console.log(weather);
+    fillWeatherInfo(weather);
 
   } catch (error) {
     console.error("Error fetching data:", error);
   }
+}
+
+function fillWeatherInfo(weather) {
+  const currentLocation = document.querySelector(".current-location");
+  const currentTemperature = document.querySelector(".current-temperature");
+  const currentCondition = document.querySelector(".current-condition");
+  const currentWind = document.querySelector(".current-wind");
+  const currentFeelsLike = document.querySelector(".current-feelslike");
+
+  currentLocation.textContent = weather.current.location;
+  currentTemperature.textContent = weather.current.temperature + "°C";
+  currentCondition.textContent = weather.current.condition;
+  currentWind.textContent = weather.current.wind + " m/s";
+  currentFeelsLike.textContent = "Feels like " + weather.current.feelsLike + "°C";
 }
 
 document.querySelector("#searchbutton").addEventListener("click", () => {
