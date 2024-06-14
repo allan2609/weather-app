@@ -37,10 +37,6 @@ body {
   box-sizing: inherit;
 }
 
-#searchicon {
-  height: 1.75rem;
-}
-
 .container {
   display: flex;
   flex-direction: column;
@@ -90,9 +86,14 @@ body {
   align-items: center;
 }
 
-.today span svg {
+.wind-icon {
   height: 1.1rem;
   margin: 0 0.5rem;
+  display: none;
+}
+
+.wind-info {
+  display: none;
 }
 
 .forecast {

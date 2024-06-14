@@ -4,15 +4,23 @@ const { format } = require("date-fns");
 let isCelsius = true;
 let weatherData;
 
-async function getLocationInfo(location = "Pärnu") {
+async function getLocationInfo(location) {
   try {
     document.querySelector("#loading").style.display = "block";
+    //document.querySelector(".wind-icon").style.display = "block";
+
+    if (!location) {
+      const position = await getCurrentPosition();
+      const { latitude, longitude } = position.coords;
+      location = `${latitude},${longitude}`;
+    }
+
     const response = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=8b91481cdf6a423f8c7113257242805&q=${location}&days=3`, { mode: "cors" });
-    
+
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
-    
+
     const data = await response.json();
 
     weatherData = {
@@ -56,6 +64,9 @@ function fillWeatherInfo(weather) {
   document.querySelector(".current-condition").textContent = weather.current.condition;
   document.querySelector(".current-wind").textContent = weather.current.wind + " m/s";
   document.querySelector(".current-feelslike").textContent = "Feels like " + (weather.current.feelsLike).toFixed(0) + "°C";
+
+  document.querySelector(".wind-info").style.display = "flex";
+  document.querySelector(".wind-icon").style.display = "block";
 
   const dateOneValue = weather.forecast[0].date;
   const dateOneFormatted = format(dateOneValue, "eeee");
@@ -108,4 +119,14 @@ document.querySelector("#location").addEventListener("keydown", (event) => {
   }
 });
 
-getLocationInfo();
+function getCurrentPosition() {
+  return new Promise((resolve, reject) => {
+    navigator.geolocation.getCurrentPosition(resolve, reject);
+  });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelector(".wind-info").style.display = "none";
+  document.querySelector(".wind-icon").style.display = "none";
+  getLocationInfo();
+});
