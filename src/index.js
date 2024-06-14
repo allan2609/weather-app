@@ -7,6 +7,7 @@ let weatherData;
 
 async function getLocationInfo(location = "Pärnu") {
   try {
+    document.querySelector("#loading").style.display = "block";
     const response = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=8b91481cdf6a423f8c7113257242805&q=${location}&days=3`, { mode: "cors" });
     
     if (!response.ok) {
@@ -45,6 +46,8 @@ async function getLocationInfo(location = "Pärnu") {
 
   } catch (error) {
     console.error("Error fetching data:", error);
+  } finally {
+    document.querySelector("#loading").style.display = "none";
   }
 }
 
