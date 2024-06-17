@@ -72,7 +72,7 @@ body {
 
 .today {
   display: grid;
-  grid-template-rows: 3.5rem 2rem 2rem 2rem;
+  grid-template-rows: 3.5rem 2.5rem 2rem 2rem 2rem;
   width: 100%;
   border: 0;
   border-radius: 2rem;
@@ -89,6 +89,10 @@ body {
   justify-content: center;
 }
 
+.current-condition, .current-feelslike {
+  align-items: center;
+}
+
 .wind-icon {
   height: 1.1rem;
   margin: 0 0.5rem;
@@ -97,6 +101,7 @@ body {
 
 .wind-info {
   display: none;
+  align-items: center;
 }
 
 .forecast {
@@ -181,6 +186,8 @@ body {
   -webkit-animation: spin 2s linear infinite; /* Safari */
   animation: spin 2s linear infinite;
   justify-self: center;
+  position: fixed;
+  top: 35%;
 }
 
 /* Safari */
